@@ -1,54 +1,48 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
+let editContentButton;
+let editContentButtonContainer;
+let datePicker;
+let dateUnix;
+let editContentForm;
+const maxDaysToBlock = 5;
+const setup = () => {
+    editContentButton = document.getElementById('editContentButton');
+    editContentButtonContainer = document.getElementById('editContentButtonContainer');
+    dateUnix = document.getElementById('dateUnix');
+    editContentForm = document.querySelector('form');
+    editContentButton.addEventListener('click', handlePageEditButton);
+    datePicker = document.getElementById('date');
+    editContentForm.addEventListener('submit', handleEditContentSubmit);
+    handleCountDown();
 };
-const big_image = document.querySelector('#big_img');
-const handleBigImageInteraction = (() => {
-    try {
-        if (big_image != null)
-            big_image.addEventListener('click', () => {
-                let input = document.createElement('input');
-                input.type = 'file';
-                input.accept = 'image/png, image/jpeg';
-                input.onchange = (_this) => __awaiter(void 0, void 0, void 0, function* () {
-                    var _a;
-                    let files = Array.from((_a = input.files) !== null && _a !== void 0 ? _a : []);
-                    if (files.length === 1) {
-                        const file = files[0];
-                        big_image.src = yield readFile(file);
-                    }
-                });
-                input.click();
-            });
-    }
-    catch (error) {
-        showErrorMessage(error);
-    }
-})();
-const readFile = (file) => __awaiter(void 0, void 0, void 0, function* () {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            if (reader.result == null)
-                throw Error('Error with file');
-            resolve(reader.result);
-        };
-        reader.onerror = (error) => {
-            throw Error(error.toString());
-        };
-    });
-});
-function showErrorMessage(error) {
+const showErrorMessage = (error) => {
     console.log(error);
-}
-const displayCurrentYear = (() => {
-    const currentYearSpan = document.getElementById('current_year');
-    currentYearSpan.innerText = new Date().getFullYear().toString();
-})();
+};
+const handleCountDown = async () => {
+    const timeToEdit = document.getElementById('timeToEdit');
+    const fetchUrl = `http://${location.host}/latest`;
+    const user = await (await fetch(fetchUrl)).json();
+    console.log('%c Last Editor Details ', 'font-size: 1rem; font-weight: bold; background-color: yellow; color: black;');
+    console.table(user);
+    if (user.error)
+        return;
+    const timeRemainingUnix = new Date(parseInt(user.timeUntilEdit));
+    if (timeRemainingUnix <= new Date())
+        return (timeToEdit.innerHTML = 'Page is editable');
+    setInterval(() => {
+        const currentTime = new Date();
+        const seconds = Math.abs(Math.floor((timeRemainingUnix.getTime() - currentTime.getTime()) / 1000));
+        const day = Math.floor(seconds / (3600 * 24));
+        const hour = Math.floor((seconds % (3600 * 24)) / 3600);
+        const min = Math.floor((seconds % 3600) / 60);
+        const sec = Math.floor(seconds % 60);
+        timeToEdit.innerText = `${day} day(s) - ${hour} hour(s) - ${min} minute(s) - ${sec} second(s)`;
+    }, 1000);
+};
+const handlePageEditButton = () => {
+    editContentButtonContainer.classList.toggle('hidden');
+};
+const handleEditContentSubmit = () => {
+    dateUnix.value = new Date(datePicker.value).getTime().toString();
+};
+window.addEventListener('load', setup);

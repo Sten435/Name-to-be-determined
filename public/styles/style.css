@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 #zin {
 	font-size: 2rem;
 	text-align: center;
@@ -12,6 +16,80 @@
 
 .image_container > img {
 	border-radius: 0.2rem;
+}
+
+.editContainer {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 60%;
+}
+
+#editContentButtonContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 4rem;
+	background-color: gray;
+	bottom: 0;
+	border-radius: 1rem;
+}
+
+#editContentButton {
+	position: absolute;
+	left: 1rem;
+	bottom: 1rem;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.error {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 1.6rem;
+	padding: 0.8rem 0;
+	color: whitesmoke;
+	background-color: rgba(253, 59, 45, 0.84);
+}
+
+label {
+	width: 12rem;
+	padding: 1.4rem 0 0 0;
+}
+
+label:first-of-type {
+	padding-top: 0;
+}
+
+.buttonContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.buttonContainer button {
+	width: 6rem;
+	margin-top: 1.2rem;
+	text-align: center;
+}
+
+input {
+	height: 2rem;
+	border-radius: 0.2rem;
+	border: rgba(128, 128, 128, 0.646) solid 1px;
+	padding-left: 0.6rem;
 }
 
 body {

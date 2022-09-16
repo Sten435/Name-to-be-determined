@@ -1,6 +1,42 @@
-<div class='container'>
-	<h1 id='zin' contenteditable='true'>Click Here To Edit.</h1>
-	<div class='image_container'>
-		<img id='big_img' src='https://via.placeholder.com/650?text=Click To Upload' alt='' />
+{{#if error}}
+	<div class='error'><b>{{errorMessage}}</b></div>
+{{else}}
+	<div class='container'>
+		<h1 id='zin'>{{titleText}}</h1>
+		<div class='image_container'>
+			<img id='big_img' src='{{imageLink}}' alt='{{imageAlt}}' />
+		</div>
+		<button id='editContentButton' class='btn primary'>Edit</button>
 	</div>
-</div>
+	<div id='editContentButtonContainer' class='hidden'>
+		<form action='{{editContentUrl}}' method='post' class='editContainer'>
+			<label for='headerText'>
+				<b>Header</b>
+			</label>
+			<input type='text' placeholder='{{headerText}}' name='headerText' />
+			<label for='titleText'>
+				<b>Title</b>
+			</label>
+			<input type='text' placeholder='{{titleText}}' name='titleText' />
+			<label for='imageSrc'>
+				<b>Image Link</b>
+			</label>
+			<input type='text' placeholder='{{imageSrc}}' name='imageLink' />
+			<label for='imageAlt'>
+				<b>Image Alt</b>
+			</label>
+			<input type='text' placeholder='{{imageAlt}}' name='imageAlt' />
+			<label for='timeUntillNextEditPicker'>
+				<b>Time Untill Next Edit</b>
+			</label>
+			<input id='date' min='{{minEditDate}}' max='{{maxEditDate}}' type='date' name='timeUntillNextEditPicker' />
+			<input id='dateUnix' type='hidden' name='timeUntillNextEdit' />
+			<label for='name'>
+				<b>First Name</b>
+			</label>
+			<input type='text' name='name' />
+			<input type='hidden' name='code' value='{{code}}' />
+			<div class='buttonContainer'><button type='submit' class='btn'><b>Save</b></button></div>
+		</form>
+	</div>
+{{/if}}

@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.maxDaysToBlock = exports.serverConfig = void 0;
-exports.serverConfig = {
+const serverConfig = {
     indexRoute: '/',
     getDataRoute: '/latest',
-    addDataRoute: '/update',
+    AddDataRoute: '/add',
     port: process.env.PORT || 3000,
 };
-exports.maxDaysToBlock = 5;
+exports.default = serverConfig;

@@ -1,13 +1,8 @@
-type serverConfigType = {
-	indexRoute: string;
-	port: number | string;
-};
-
-// end types
-
-const serverConfig: serverConfigType = {
+export const serverConfig: serverConfigType = {
 	indexRoute: '/',
-	port: process.env.PORT || 80,
+	getDataRoute: '/latest',
+	addDataRoute: '/update',
+	port: process.env.PORT || 3000,
 };
 
-export default serverConfig;
+export const maxDaysToBlock = 5;
