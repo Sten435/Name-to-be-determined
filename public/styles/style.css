@@ -1,5 +1,11 @@
 * {
 	box-sizing: border-box;
+	font-family: 'rammstein' !important;
+}
+
+@font-face {
+	font-family: rammstein;
+	src: url(https://www.rammstein.de/_next/static/media/GT-America-Standard-Bold.e4210df7.woff);
 }
 
 #zin {
@@ -33,8 +39,9 @@
 	top: 0;
 	left: 0;
 	right: 0;
+	box-shadow: rgb(0 0 0 / 29%) 2px 2px 1px, inset rgb(187 187 187 / 27%) 6px 6px 9px 0px;
 	margin: 4rem;
-	background-color: gray;
+	background-color: #ededed;
 	bottom: 0;
 	border-radius: 1rem;
 }
@@ -43,6 +50,16 @@
 	position: absolute;
 	left: 1rem;
 	bottom: 1rem;
+	font-weight: bold;
+	box-shadow: rgba(0, 0, 0, 0.421) 2px 2px 1px;
+	text-shadow: rgba(0, 0, 0, 0.507) 1px 1px 1px;
+	color: white;
+	background-color: #c7c7c7;
+}
+
+#editContentButton:active {
+	transform: translateY(2px) translateX(2px);
+	box-shadow: none;
 }
 
 .hidden {
@@ -62,7 +79,15 @@
 	font-size: 1.6rem;
 	padding: 0.8rem 0;
 	color: whitesmoke;
-	background-color: rgba(253, 59, 45, 0.84);
+	background-color: rgb(243 66 53);
+}
+
+.--error {
+	background-color: rgb(243 66 53);
+}
+
+.--alert {
+	background-color: rgb(61, 168, 73);
 }
 
 label {
@@ -83,6 +108,11 @@ label:first-of-type {
 	width: 6rem;
 	margin-top: 1.2rem;
 	text-align: center;
+	font-weight: bold;
+	box-shadow: rgba(0, 0, 0, 0.421) 2px 2px 1px;
+	text-shadow: rgba(0, 0, 0, 0.507) 1px 1px 1px;
+	color: white;
+	background-color: #c7c7c7;
 }
 
 input {
@@ -90,6 +120,29 @@ input {
 	border-radius: 0.2rem;
 	border: rgba(128, 128, 128, 0.646) solid 1px;
 	padding-left: 0.6rem;
+}
+
+#alertContainer {
+	width: 100vw;
+	height: 3.5rem;
+	z-index: 9999999;
+	position: absolute;
+	top: -4rem;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: whitesmoke;
+	text-shadow: rgba(0, 0, 0, 0.507) 1px 0 4px;
+	transition: all 0.4s ease-in-out;
+}
+
+#alertContainer > h4 {
+	margin-bottom: 0;
+}
+
+.sliderAlert {
+	top: 0 !important;
 }
 
 body {
@@ -100,4 +153,54 @@ body {
 
 img {
 	max-width: 100%;
+}
+
+/* loading ripple */
+
+.loadingContainer {
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.lds-ring {
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	height: 80px;
+}
+.lds-ring div {
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	margin: 8px;
+	border: 8px solid rgb(53, 110, 139);
+	border-radius: 50%;
+	animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+	border-color: rgb(53, 110, 139) transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+	animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+	animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+	animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }

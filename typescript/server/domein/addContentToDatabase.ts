@@ -2,7 +2,7 @@ import sqlQuery from './sqlQuery';
 import { bindUserToCode } from './validateAccessCode';
 
 export default function addContentToDatabase(body: contentBody): Promise<any> {
-	return new Promise<contentBody>(async (resolve: any) => {
+	return new Promise<contentBody>(async (resolve: any, reject: any) => {
 		try {
 			const queryUserExist: string = 'SELECT id as user_id FROM users WHERE name = ?';
 			const queryUser: string = 'INSERT INTO users (name) VALUES(?)';
@@ -25,7 +25,7 @@ export default function addContentToDatabase(body: contentBody): Promise<any> {
 
 			return resolve({ error: false });
 		} catch (error: any) {
-			return resolve({ error: true, errorMessage: error.message });
+			return reject({ error: true, errorMessage: error.message });
 		}
 	});
 }

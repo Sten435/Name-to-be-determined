@@ -5,4 +5,7 @@ export const serverConfig: serverConfigType = {
 	port: process.env.PORT || 3000,
 };
 
-export const maxDaysToBlock = 5;
+export const CONSTANTS: constantsConfigType = {
+	maxDaysToBlock: 2,
+	maxInputCharLength: 255,
+};

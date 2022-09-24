@@ -16,6 +16,7 @@ export async function checkNewCode(): Promise<void> {
 	if (result.length === 0) {
 		const query: string = 'INSERT INTO accesscode (code) VALUES (?)';
 		const code: string = uuidv4();
+		
 		(await sqlQuery(query, [code])) as any;
 	} else if (result.length > 1) throw 'There are more than allowed active codes';
 }

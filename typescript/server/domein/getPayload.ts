@@ -1,12 +1,12 @@
 import getLatestEditContentData from './getLatestEditContentData';
-import { maxDaysToBlock, serverConfig } from '../config/config';
+import { CONSTANTS, serverConfig } from '../config/config';
 import { getAccessCode } from './validateAccessCode';
 
 export default async function getPayload(): Promise<object> {
 	const maxDate: Date = new Date();
 	const minDate: Date = new Date();
 
-	maxDate.setDate(maxDate.getDate() + maxDaysToBlock);
+	maxDate.setDate(maxDate.getDate() + CONSTANTS.maxDaysToBlock);
 	minDate.setDate(minDate.getDate() + 1);
 	const datePickermin: string = minDate.toISOString().slice(0, 10);
 	const datePickermax: string = maxDate.toISOString().slice(0, 10);

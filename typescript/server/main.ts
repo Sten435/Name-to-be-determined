@@ -22,13 +22,17 @@ app.use(
 		limit: '2mb',
 	}),
 );
-app.use(async (err: any, _req: any, res: any, next: any) => {
-	if (err) return res.sendStatus(400);
-	next();
+app.use(async (err: any, _req: any, _res: any, next: any) => {
+	tryCatchParser(_res, () => {
+		if (err) return _res.sendStatus(400);
+		next();
+	});
 });
 app.use(async (_req: any, _res: any, next: any) => {
-	await checkNewCode();
-	next();
+	tryCatchParser(_res, async () => {
+		await checkNewCode();
+		next();
+	});
 });
 
 app.engine('handlebars', engine());

@@ -6,6 +6,7 @@ type serverConfigType = {
 };
 
 type contentBody = {
+	[key: string]: any;
 	timeUntillNextEdit: string | number;
 	name: string;
 	headerText: string;
@@ -13,4 +14,9 @@ type contentBody = {
 	imageLink: string;
 	imageAlt: string;
 	code: string;
+};
+
+type constantsConfigType = {
+	maxDaysToBlock: number;
+	maxInputCharLength: number;
 };
