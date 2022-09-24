@@ -1,4 +1,4 @@
-## Hey 👋, I'm Stan Persoons and here is some info why i created this project
+## Hey 👋, I'm Stan Persoons and here is some info from the project
 
 ## About
 
@@ -14,6 +14,14 @@
 </td></tr></table>
 
 <br/>
+
+<table><tr><td valign="top" width="50%">
+<img src='https://user-images.githubusercontent.com/44066744/192117507-eef4d3d0-7c2a-4e3a-b201-5ef249b282e2.png'>
+</td>
+<td valign="top" width="50%">
+<img src='https://user-images.githubusercontent.com/44066744/192117454-1da2e298-4236-487e-b82a-15d1ff1f3ba6.png'>
+
+</td></tr></table>
 
 ## Languages and Tools
 
